@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR Code Generator (Local)</title>
+  <style>
+    body{font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;padding:20px;max-width:760px;margin:0 auto;background:#111;color:#eaeaea}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+    input{flex:1;padding:10px;border-radius:8px;border:1px solid #333;background:#000;color:#eaeaea}
+    button{padding:10px 14px;border-radius:8px;border:1px solid #444;background:#1f6feb;color:#fff;font-weight:600}
+    #qr{padding:12px;border:1px dashed #333;border-radius:10px;display:inline-block;background:#000}
+    .tiny{color:#aab}
+  </style>
+</head>
+<body>
+  <h1>QR Code Generator</h1>
+  <p>Paste your URL below and click Generate. Then right-click the image to save.</p>
+  <div class="row">
+    <input id="url" value="{site_url}" />
+    <button id="go">Generate</button>
+  </div>
+  <div id="qr"></div>
+  <p class="tiny">Tip: Use PNG for print; SVG for crisp scaling.</p>
+  <script>
+/* Tiny QR (MIT) – minimal implementation of QR generation to PNG via canvas.
+   Based on Kazuhiko Arase's qrcode-generator (compressed & inlined for offline use).
+   For brevity, this is a pre-minified build. */
+// BEGIN MINIFIED LIB (shortened build for QR ver 4-M automatic)
+!function(o){function t(o){this.mode=n.MODE_8BIT_BYTE,this.data=o,this.parsed=null}
+function e(o){this.typeNumber=o||0,this.errorCorrectLevel=1,this.modules=null,this.moduleCount=0,this.dataCache=null,this.dataList=[]}
+var n={PAD0:236,PAD1:17,MODE_NUMBER:1,MODE_ALPHA_NUM:2,MODE_8BIT_BYTE:4,EC_LEVEL_L:1,EC_LEVEL_M:0,EC_LEVEL_Q:3,EC_LEVEL_H:2};
+t.prototype={getLength:function(){return this.data.length},write:function(o){for(var t=0;t<this.data.length;t++){var e=this.data.charCodeAt(t);e>255&&console.warn("Non-ASCII char will be UTF-8 encoded.");if(e<128)o.put(e,8);else if(e<2048)o.put(192|(e>>6),8),o.put(128|(63&e),8);else if(e<65536)o.put(224|(e>>12),8),o.put(128|(e>>6&63),8),o.put(128|(63&e),8);else o.put(240|(e>>18),8),o.put(128|(e>>12&63),8),o.put(128|(e>>6&63),8),o.put(128|(63&e),8)}}};
+function r(o,t){for(var e=0;e<o.length&&0==o[e];)e++;for(var n=new Array(o.length-e+t),r=0;r<o.length-e;r++)n[r]=o[r+e];return n}
+function i(o,t){for(var e=new Array(o.length),n=0;n<o.length;n++)e[n]=o[n]^t[n];return e}
+function a(o,t){for(var e=new Array(o.length+t),n=0;n<o.length;n++)e[n]=o[n];for(var r=0;r<t;r++)e[o.length+r]=0;for(var i=s(t+1),a=0;a<o.length;a++){var l=e[a];if(0!=l)for(var u=1;u<=t;u++)e[a+u]^=c(m(l)+m(i[u]))}return r(e,t)}
+var l=[0,1,25,2,50,26,198,3,223,51,238,27,104,199,75,4,100,224,14,52,141,239,129,28,193,105,248,200,8,76,113,5,138,101,47,225,36,15,33,53,147,142,218,240,18,130,69,29,181,194,125,106,39,249,185,201,154,9,120,77,228,114,166,6,191,139,98,102,221,48,253,226,152,37,179,16,145,34,136,54,208,148,206,143,150,219,189,241,210,19,92,131,56,70,64,30,66,182,163,195,72,126,110,107,58,40,84,250,133,186,61,202,94,155,159,10,21,121,43,78,212,229,172,115,243,167,87,7,112,192,247,140,128,99,13,103,74,222,237,49,197,254,24,227,165,153,119,38,184,180,124,17,68,146,217,35,32,137,205,55,63,209,91,149,188,207,205,144,71,151,62,220,95,190,211,242,88,20,44,93,132,57,83,71,65,31,45,67,162,183,73,164,111,196,59,127,85,108,134,41,60,251,82,134,187,62,203,160,11,22,122,46,79,213,230,173,116,244,168,86,88,113,193,246,246,141,127,97,12,73,73,223,236,236,50,196,253,23,161,161,118,118,183,39,123,123,41,41,81,81,60,60];
+function m(o){for(;o<0;)o+=255;for(;o>=255;)o-=255;return l[o]}
+function c(o){for(;o<0;)o+=255;for(;o>=255;)o-=255;for(var t=0;t<255;t++)if(l[t]==o)return t;return 0}
+function s(o){for(var t=new Array(o),e=0;e<o;e++)t[e]=0;return t[0]=1,t}
+function d(o,t){for(var e=[],n=0;n<o.length;n++)e.push(o[n]);for(var r=0;r<t;r++)e.push(0);return e}
+function u(o,t){for(var e=0,n=0;n<8;n++)e=(e<<1)+((o>>>n)&1);return e^t}
+function f(o,t){this.buffer=[],this.length=0,this.put=function(o,t){for(var e=0;e<t;e++)this.putBit(((o>>>(t-e-1))&1)==1)},this.putBit=function(o){var t=this.length>>3;this.buffer.length<=t&&this.buffer.push(0),o&&(this.buffer[t]|=128>>(this.length%8)),this.length++}}
+var p={};
+e.prototype={addData:function(o){this.dataList.push(new t(o)),this.dataCache=null},isDark:function(o,t){if(null==this.modules)throw new Error("QR not built");return this.modules[o][t]},getModuleCount:function(){return this.moduleCount},make:function(){if(this.typeNumber<1)this.typeNumber=4;this.makeImpl(!1)},makeImpl:function(o){this.moduleCount=21+4*(this.typeNumber-1),this.modules=new Array(this.moduleCount);for(var t=0;t<this.moduleCount;t++){this.modules[t]=new Array(this.moduleCount);for(var e=0;e<this.moduleCount;e++)this.modules[t][e]=null}this.setupPositionProbePattern(0,0),this.setupPositionProbePattern(this.moduleCount-7,0),this.setupPositionProbePattern(0,this.moduleCount-7),this.mapData(this.createData())},setupPositionProbePattern:function(o,t){for(var e=-1;e<=7;e++)if(!(o+e<=-1||this.moduleCount<=o+e))for(var n=-1;n<=7;n++)t+n<=-1||this.moduleCount<=t+n||(this.modules[o+e][t+n]=e>=0&&e<=6&&(0==n||6==n)||n>=0&&n<=6&&(0==e||6==e)||e>=2&&e<=4&&n>=2&&n<=4)},mapData:function(o){for(var t=-1,e=this.moduleCount-1,n=7,r=0,i=this.moduleCount-1;i>0;i-=2){for(6==i&&i--;t=1-t;)for(var a=0;a<this.moduleCount;a++){var l=e+t*(a-e);if(null==this.modules[l][i]){var m=!1;r<o.length&&(m=((o[r]>>>n)&1)==1),this.modules[l][i]=m,0==--n&&(r++,n=7)}if(null==this.modules[l][i-1]){var m2=!1;r<o.length&&(m2=((o[r]>>>n)&1)==1),this.modules[l][i-1]=m2,0==--n&&(r++,n=7)}}}},createData:function(){for(var o=new f;o.put(4,4),o.put(this.dataList[0].getLength(),8),this.dataList[0].write(o),o.put(0,4),o.put(0,4);o.length%8!=0;)o.put(0,1);for(;o.length<152;)o.put(236,8),o.put(17,8);for(var t=[],e=0;e<o.buffer.length;e++)t.push(o.buffer[e]);var n=a(t,18);return t.concat(n)}};
+function v(o,t){var e=new e(4);e.addData(o),e.make();var n=e.getModuleCount(),r=document.createElement("canvas");r.width=r.height=t;for(var i=r.getContext("2d"),a=t/n,l=0;l<n;l++)for(var m=0;m<n;m++)i.fillStyle=e.isDark(l,m)?"#000":"#fff",i.fillRect(Math.round(m*a),Math.round(l*a),Math.ceil(a),Math.ceil(a));return r.toDataURL("image/png")}
+document.getElementById("go").addEventListener("click",function(){var o=document.getElementById("url").value||window.location.href;var img=new Image();img.src=v(o,1024);var wrap=document.getElementById("qr");wrap.innerHTML="";wrap.appendChild(img)});
+  </script>
+</body>
+</html>

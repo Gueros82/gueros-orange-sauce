@@ -1,0 +1,57 @@
+
+:root{
+  --bg:#0f0f10;
+  --card:#1a1b1e;
+  --text:#e9ecef;
+  --muted:#aeb4bd;
+  --accent:#ff8c1a; /* orange */
+  --cream:#f2e9de;  /* for light accents */
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+
+.inner{max-width:900px;margin:0 auto;padding:24px}
+
+.site-header{
+  background:linear-gradient(180deg, rgba(255,140,26,0.18), rgba(0,0,0,0));
+  padding-top:56px;padding-bottom:24px;border-bottom:1px solid #222;
+}
+.brand{
+  font-family:"UnifrakturCook", cursive;
+  font-size: clamp(40px, 7vw, 88px);
+  line-height: .95;
+  margin:0;
+  letter-spacing:.5px;
+  text-shadow:0 1px 0 rgba(0,0,0,.6);
+}
+.brand .accent{ color: var(--accent); }
+
+.tagline{margin:8px 0 20px;color:var(--muted);font-size:clamp(16px,2.5vw,20px)}
+
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:12px 18px;border:1px solid #2a2d33;border-radius:10px;
+  text-decoration:none;color:var(--text);font-weight:600;transition:.2s transform,.2s background-color,.2s border-color
+}
+.btn:hover{transform:translateY(-1px);border-color:#3a3f46;background:#17181b}
+.btn.primary{background:var(--accent);color:#1a1b1e;border-color:transparent}
+.btn.primary:hover{filter:brightness(1.05)}
+
+.card{
+  background:var(--card);border:1px solid #24262b;border-radius:16px;padding:20px;margin:20px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.card h2{font-size:clamp(22px,3vw,28px);margin:0 0 12px 0}
+.features{margin:0;padding-left:18px;color:var(--cream)}
+.features li{margin:8px 0}
+
+.qr-section .qr-wrap{
+  display:flex;justify-content:center;align-items:center;padding:12px;
+  background:#0d0e10;border-radius:12px;border:1px dashed #2a2c30
+}
+.qr-section img{width:min(320px,70vw);height:auto;display:block}
+
+.site-footer{color:var(--muted);font-size:14px;border-top:1px solid #222;margin-top:20px}
+.tiny{color:var(--muted);font-size:12px}
+code{background:#0d0e10;padding:2px 6px;border:1px solid #2a2c30;border-radius:6px}

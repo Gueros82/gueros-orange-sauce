@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Güeros Orange Sauce | Hot Sauce</title>
+  <meta name="description" content="Bright, citrusy heat. Güeros Orange Sauce is your new favorite hot sauce." />
+  <meta property="og:title" content="Güeros Orange Sauce" />
+  <meta property="og:description" content="Bright, citrusy heat. Your new favorite hot sauce." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourusername.github.io/gueros-orange-sauce" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <h1 class="brand">Güeros <span class="accent">Orange</span> Sauce</h1>
+      <p class="tagline">Bright citrus. Clean heat. Add it to everything.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#buy">Buy a Bottle</a>
+        <a class="btn" href="#about">What makes it special?</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="inner">
+    <section id="about" class="card">
+      <h2>Why you'll love it</h2>
+      <ul class="features">
+        <li>Sunny orange + garlic + chili blend</li>
+        <li>Medium heat that plays nice with tacos, eggs, bowls &amp; wings</li>
+        <li>No junk: simple ingredients, bold flavor</li>
+      </ul>
+    </section>
+
+    <section id="buy" class="card">
+      <h2>Grab a bottle</h2>
+      <p>Coming soon online. For now, DM us or email to order.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:orders@guerosauce.com?subject=Order%20Request%20-%20G%C3%BCeros%20Orange%20Sauce">Email to order</a>
+        <a class="btn" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </section>
+
+    <section class="card qr-section">
+      <h2>Scan to visit</h2>
+      <p>Point your camera at the code to open this page.</p>
+      <div class="qr-wrap">
+        <img src="qr/qr.png" alt="QR code to https://yourusername.github.io/gueros-orange-sauce" />
+      </div>
+      <p class="tiny">Need to regenerate the code for a new URL? Open <code>qr.html</code> in your browser and paste your link.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer inner">
+    <p>&copy; <span id="year"></span> Güeros Orange Sauce. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
